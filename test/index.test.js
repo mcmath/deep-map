@@ -102,8 +102,9 @@ describe('module:index', function() {
     describe('arg2:index/key', function() {
 
       function arg2Test(fixt, keys) {
+        var any = sinon.match.any;
         for (var i = 0; i < keys.length; i++) {
-          expect(fixt.transform).to.have.been.calledWith(sinon.match.any, keys[i]);
+          expect(fixt.transform).to.have.been.calledWith(any, keys[i]);
         }
       }
 
@@ -140,10 +141,10 @@ describe('module:index', function() {
     describe('option:inPlace', function() {
 
       describe('value:falsy',function() {
+        var fixt = fixtures.inPlace;
 
-        var fixt, result;
+        var result;
         before(function() {
-          fixt = fixtures.inPlace;
           result = deepMap(fixt.source, fixt.transform);
         });
 
@@ -159,8 +160,9 @@ describe('module:index', function() {
       });
 
       describe('value:truthy', function() {
+        var fixt = fixtures.inPlace;
 
-        var fixt, result;
+        var result;
         before(function() {
           fixt = fixtures.inPlace;
           result = deepMap(fixt.source, fixt.transform, {inPlace: true});
@@ -181,7 +183,9 @@ describe('module:index', function() {
 
       it('sets the context within transformFn', function() {
         var fixt = fixtures.thisArg;
-        var result = deepMap(fixt.source, fixt.transform, {thisArg: fixt.thisArg});
+        var opts = {thisArg: fixt.thisArg};
+
+        var result = deepMap(fixt.source, fixt.transform, opts);
         expect(fixt.transform).to.be.calledOn(fixt.thisArg);
         expect(result).to.deep.equal(fixt.expected);
       });
