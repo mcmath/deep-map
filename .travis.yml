@@ -5,8 +5,7 @@ node_js:
   - "4.0"
   - "0.12"
   - "0.10"
-after_script:
-  - "cat ./coverage/lcov.info | coveralls"
+after_script: "npm run travis:after"
 branches:
   only:
     - master
