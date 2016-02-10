@@ -28,13 +28,6 @@ describe('module:index', function() {
       expect(result).to.deep.equal(fixt.expected);
     };
 
-    describe('user leaves undefined', function() {
-
-      it('throws an Error', function() {
-        expect(deepMap.bind(null)).to.throw(Error);
-      });
-    });
-
     describe('user passes a primitive value', function() {
 
       it('transforms the primitive value', function() {
