@@ -43,8 +43,8 @@ And we want to fill it with the following data:
 const data = {
   name: 'Samuel Johnson',
   email: 'sam.johnson@dictonary.com',
-  keyword1: 'dictonary',
-  keyword2: 'lexography',
+  keyword1: 'dictionary',
+  keyword2: 'lexicography',
   hobby1: 'writing',
   hobby2: 'torying',
 };
@@ -73,8 +73,8 @@ And here is the result:
   "name": "Samuel Johnson",
   "email": "sam.johnson@dictonary.com",
   "keywords": [
-    "dictonary",
-    "lexography"
+    "dictionary",
+    "lexicography"
   ],
   "hobbies": {
     "hobby1": "writing",
