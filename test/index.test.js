@@ -2,6 +2,7 @@
 
 var expect = require('chai').use(require('sinon-chai')).expect;
 var fixtures = require('./fixtures');
+var sinon = require('sinon');
 
 
 
@@ -21,12 +22,12 @@ describe('module:index', function() {
     expect(deepMap).to.have.property('name', 'deepMap');
   });
 
-  describe('param:object', function() {
+  var objectTest = function(fixt) {
+    var result = deepMap(fixt.source, fixt.transform);
+    expect(result).to.deep.equal(fixt.expected);
+  };
 
-    var objectTest = function(fixt) {
-      var result = deepMap(fixt.source, fixt.transform);
-      expect(result).to.deep.equal(fixt.expected);
-    };
+  describe('param:object', function() {
 
     describe('user passes a primitive value', function() {
 
@@ -73,26 +74,57 @@ describe('module:index', function() {
 
   describe('param:transformFn', function() {
 
-    describe('user leaves undefined', function() {
+    describe('argument type', function() {
 
-      it('throws an Error', function() {
-        expect(deepMap.bind(null, {})).to.throw(Error);
+      describe('undefined', function() {
+
+        it('throws an Error', function() {
+          expect(deepMap.bind(null, {})).to.throw(Error);
+        });
+      });
+
+      describe('non-function', function() {
+
+        it('throws a TypeError', function() {
+          expect(deepMap.bind(null, {}, 42)).to.throw(TypeError);
+        });
+      });
+
+      describe('function', function() {
+
+        it('transforms each value in object', function() {
+          var result = deepMap([0, 1], Boolean);
+          expect(result).to.deep.equal([false, true]);
+        });
       });
     });
 
-    describe('user passes a non-function', function() {
+    describe('arg2:index/key', function() {
 
-      it('throws a TypeError', function() {
-        expect(deepMap.bind(null, {}, 42)).to.throw(TypeError);
+      function arg2Test(fixt, keys) {
+        for (var i = 0; i < keys.length; i++) {
+          expect(fixt.transform).to.have.been.calledWith(sinon.match.any, keys[i]);
+        }
+      }
+
+      describe('traversing array', function() {
+
+        it('is called with current index', function() {
+          var fixt = fixtures.withIndex;
+          objectTest(fixt);
+          arg2Test(fixt, fixt.indices);
+        });
       });
-    });
 
-    describe('user passes a function', function() {
+      describe('traversing object', function() {
 
-      it('transforms each value in object', function() {
-        var result = deepMap([0, 1], Boolean);
-        expect(result).to.deep.equal([false, true]);
+        it('is called with current key', function() {
+          var fixt = fixtures.withKey;
+          objectTest(fixt);
+          arg2Test(fixt, fixt.keys);
+        });
       });
+
     });
   });
 

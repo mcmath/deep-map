@@ -42,14 +42,16 @@ exports.nestedObjects = {
 
 exports.withIndex = {
   source: ['one', 'two', 'three'],
-  transform: function(value, i) { return i + ': ' + value; },
-  expected: ['1: one', '2: two', '3: three']
+  transform: sinon.spy(function(value, i) { return i + ': ' + value; }),
+  indices: [0, 1, 2],
+  expected: ['0: one', '1: two', '2: three']
 };
 
 
 exports.withKey = {
   source: {one: 1, two: 2, three: 3},
-  transform: function(value, key) { return key + ' ' + value; },
+  transform: sinon.spy(function(value, key) { return key + ' ' + value; }),
+  keys: ['one', 'two', 'three'],
   expected: {one: 'one 1', two: 'two 2', three: 'three 3'}
 };
 
