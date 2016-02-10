@@ -130,6 +130,13 @@ describe('module:index', function() {
 
   describe('param:options', function() {
 
+    describe('user passes a truthy primitive', function() {
+
+      it('throws a TypeError', function() {
+        expect(deepMap.bind(null, {}, function() {}, 42)).to.throw(TypeError);
+      });
+    });
+
     describe('option:inPlace', function() {
 
       describe('value:falsy',function() {

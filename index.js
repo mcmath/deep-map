@@ -18,6 +18,10 @@ function deepMap(object, fn, opts) {
     throwError(TypeError, 'transformFn must be a function');
   }
 
+  if (!isObject(opts)) {
+    throwError(TypeError, 'options must be an object or undefined');
+  }
+
   return transform(object, fn, opts);
 }
 
