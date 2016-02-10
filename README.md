@@ -71,7 +71,7 @@ And here is the result:
 ```json
 {
   "name": "Samuel Johnson",
-  "email": "sam.johnson@dictonary.com",
+  "email": "sam.johnson@dictionary.com",
   "keywords": [
     "dictionary",
     "lexicography"

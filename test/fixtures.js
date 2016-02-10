@@ -108,7 +108,7 @@ exports.jsonLike = {
   },
   expected: {
     name: 'Samuel Johnson',
-    email: 'sam.johnson@dictonary.com',
+    email: 'sam.johnson@dictionary.com',
     keywords: [
       'dictionary',
       'lexicography'
