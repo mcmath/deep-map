@@ -22,6 +22,13 @@ function deepMap(object, fn, opts) {
 }
 
 
+function transform(value, fn, opts, key) {
+  return isArray(value) ? mapArray(value, fn, opts)
+    : isObject(value) ? mapObject(value, fn, opts)
+    : fn.call(opts.thisArg, value, key);
+}
+
+
 function mapArray(array, fn, opts) {
   var result = opts.inPlace ? array : [];
 
@@ -42,13 +49,6 @@ function mapObject(object, fn, opts) {
   }
 
   return result;
-}
-
-
-function transform(value, fn, opts, key) {
-  return isArray(value) ? mapArray(value, fn, opts)
-    : isObject(value) ? mapObject(value, fn, opts)
-    : fn.call(opts.thisArg, value, key);
 }
 
 
