@@ -1,0 +1,46 @@
+{
+  "name": "deep-map",
+  "version": "0.0.0",
+  "description": "Transforms primitive values of a JSON-like object",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "README.md",
+    "LICENSE.txt"
+  ],
+  "scripts": {
+    "test": "mocha"
+  },
+  "engines": {
+    "node": ">=0.10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akim-mcmath/deep-map.git"
+  },
+  "keywords": [
+    "map",
+    "deep",
+    "recursive",
+    "nested",
+    "object",
+    "array",
+    "json",
+    "primitive"
+  ],
+  "author": "Akim McMath <akim.elijah.mcmath@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/akim-mcmath/deep-map/issues"
+  },
+  "homepage": "https://github.com/akim-mcmath/deep-map#readme",
+  "dependencies": {
+    "lodash": "^4.0.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5",
+    "sinon": "^1.17.3",
+    "sinon-chai": "^2.8.0"
+  }
+}
