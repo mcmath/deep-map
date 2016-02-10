@@ -1,7 +1,7 @@
 {
   "name": "deep-map",
-  "version": "1.0.2",
-  "description": "Transforms primitive values of a JSON-like object",
+  "version": "1.0.3",
+  "description": "Recursively transforms primitive values of a JSON-like object",
   "main": "index.js",
   "files": [
     "index.js",
@@ -9,10 +9,14 @@
     "LICENSE.txt"
   ],
   "scripts": {
-    "test": "mocha",
+    "test": "istanbul cover _mocha",
+    "test:all": "npm run jshint && npm run jscs && npm test",
+    "jshint": "jshint . --exclude-path .gitignore",
+    "jscs": "jscs .",
+    "coverage": "npm run test && open ./coverage/lcov-report/index.html",
     "clean": "rm -rf ./node_modules ./coverage",
-    "coverage": "istanbul cover _mocha && open ./coverage/lcov-report/index.html",
-    "coveralls": "istanbul cover _mocha && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage"
+    "travis:after": "cat ./coverage/lcov.info | coveralls",
+    "preversion": "npm run test:all"
   },
   "engines": {
     "node": ">=0.10"
@@ -44,6 +48,8 @@
     "chai": "^3.5.0",
     "coveralls": "^2.11.6",
     "istanbul": "^0.4.2",
+    "jscs": "^2.9.0",
+    "jshint": "^2.9.1",
     "mocha": "^2.4.5",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0"

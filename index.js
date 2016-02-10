@@ -18,7 +18,18 @@ function deepMap(object, fn, opts) {
     throwError(TypeError, 'transformFn must be a function');
   }
 
+  if (!isObject(opts)) {
+    throwError(TypeError, 'options must be an object or undefined');
+  }
+
   return transform(object, fn, opts);
+}
+
+
+function transform(value, fn, opts, key) {
+  return isArray(value) ? mapArray(value, fn, opts) :
+    isObject(value) ? mapObject(value, fn, opts) :
+    fn.call(opts.thisArg, value, key);
 }
 
 
@@ -42,13 +53,6 @@ function mapObject(object, fn, opts) {
   }
 
   return result;
-}
-
-
-function transform(value, fn, opts, key) {
-  return isArray(value) ? mapArray(value, fn, opts)
-    : isObject(value) ? mapObject(value, fn, opts)
-    : fn.call(opts.thisArg, value, key);
 }
 
 
