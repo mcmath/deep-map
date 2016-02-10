@@ -27,9 +27,9 @@ function deepMap(object, fn, opts) {
 
 
 function transform(value, fn, opts, key) {
-  return isArray(value) ? mapArray(value, fn, opts)
-    : isObject(value) ? mapObject(value, fn, opts)
-    : fn.call(opts.thisArg, value, key);
+  return isArray(value) ? mapArray(value, fn, opts) :
+    isObject(value) ? mapObject(value, fn, opts) :
+    fn.call(opts.thisArg, value, key);
 }
 
 
