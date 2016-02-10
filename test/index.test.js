@@ -100,19 +100,41 @@ describe('module:index', function() {
 
     describe('option:inPlace', function() {
 
-      var fixt, result;
-      before(function() {
-        fixt = fixtures.inPlace;
-        result = deepMap(fixt.source, fixt.transform, {inPlace: true});
+      describe('value:truthy', function() {
+
+        var fixt, result;
+        before(function() {
+          fixt = fixtures.inPlace;
+          result = deepMap(fixt.source, fixt.transform, {inPlace: true});
+        });
+
+        it('transforms object in place', function() {
+          expect(result).to.equal(fixt.superObject);
+          expect(result).to.deep.equal(fixt.expected);
+        });
+
+        it('transforms nested objects in place', function() {
+          expect(result).property('[3]').to.equal(fixt.subObject);
+        });
       });
 
-      it('transforms object in place', function() {
-        expect(result).to.equal(fixt.superObject);
-        expect(result).to.deep.equal(fixt.expected);
-      });
+      describe('value:falsy',function() {
 
-      it('transforms nested objects in place', function() {
-        expect(result).property('[3]').to.equal(fixt.subObject);
+        var fixt, result;
+        before(function() {
+          fixt = fixtures.inPlace;
+          result = deepMap(fixt.source, fixt.transform);
+        });
+
+        it('leaves old object alone', function() {
+          expect(result).not.to.equal(fixt.superObject);
+          expect(fixt.superObject).to.deep.equal(fixt.superObjectCopy);
+        });
+
+        it('leave old subObject alone', function() {
+          expect(result).property('[3]').not.to.equal(fixt.subObject);
+          expect(fixt.subObject).to.deep.equal(fixt.superObjectCopy);
+        });
       });
     });
 

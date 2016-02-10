@@ -62,6 +62,8 @@ exports.inPlace = {
   transform: function(value) { return value * 2; },
   subObject: subObject,
   superObject: superObject,
+  subObjectCopy: {four: 5},
+  superObjectCopy: [1, 2, 3, {four: 5}],
   expected: [2, 4, 6, {four: 10}]
 };
 
