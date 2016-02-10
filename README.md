@@ -91,7 +91,7 @@ Properties and indices are visited recursively, so nested primitives will
 be transformed. By default, a new object is returned without modifying the
 original or any of its nested objects.
 
-#### object
+##### object
 
 `object|array`
 
