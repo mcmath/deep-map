@@ -9,7 +9,10 @@
     "LICENSE.txt"
   ],
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "clean": "rm -rf ./node_modules ./coverage",
+    "coverage": "istanbul cover _mocha && open ./coverage/lcov-report/index.html",
+    "coveralls": "istanbul cover _mocha && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage"
   },
   "engines": {
     "node": ">=0.10"
