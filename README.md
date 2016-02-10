@@ -31,8 +31,8 @@ const templateObject = {
     '<%- keyword2 %>'
   ],
   hobbies: {
-    hobby1: '<%- hobby1 %>',
-    hobby2: '<%- hobby2 %>'
+    primary: '<%- hobby1 %>',
+    secondary: '<%- hobby2 %>'
   }
 };
 ```
@@ -77,8 +77,8 @@ And here is the result:
     "lexicography"
   ],
   "hobbies": {
-    "hobby1": "writing",
-    "hobby2": "torying"
+    "primary": "writing",
+    "secondary": "torying"
 }
 ```
 
