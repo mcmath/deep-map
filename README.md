@@ -42,7 +42,7 @@ And we want to fill it with the following data:
 ```js
 const data = {
   name: 'Samuel Johnson',
-  email: 'sam.johnson@dictonary.com',
+  email: 'sam.johnson@dictionary.com',
   keyword1: 'dictionary',
   keyword2: 'lexicography',
   hobby1: 'writing',
