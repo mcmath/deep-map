@@ -41,9 +41,7 @@
     "url": "https://github.com/akim-mcmath/deep-map/issues"
   },
   "homepage": "https://github.com/akim-mcmath/deep-map#readme",
-  "dependencies": {
-    "lodash": "^4.0.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "chai": "^3.5.0",
     "coveralls": "^2.11.6",

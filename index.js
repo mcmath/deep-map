@@ -1,16 +1,10 @@
 'use strict';
 
-var isArray = require('lodash/isArray');
-var isFunction = require('lodash/isFunction');
-var isObject = require('lodash/isObject');
-var isUndefined = require('lodash/isUndefined');
-
-
 
 function deepMap(object, fn, opts) {
   opts = opts || {};
 
-  if (isUndefined(fn)) {
+  if (!fn) {
     throwError(Error, 'transformFn must be defined');
   }
 
@@ -27,7 +21,7 @@ function deepMap(object, fn, opts) {
 
 
 function transform(value, fn, opts, key) {
-  return isArray(value) ? mapArray(value, fn, opts) :
+  return Array.isArray(value) ? mapArray(value, fn, opts) :
     isObject(value) ? mapObject(value, fn, opts) :
     fn.call(opts.thisArg, value, key);
 }
@@ -53,6 +47,16 @@ function mapObject(object, fn, opts) {
   }
 
   return result;
+}
+
+
+function isFunction(value) {
+  return typeof value === 'function';
+}
+
+
+function isObject(value) {
+  return typeof value === 'object' || isFunction(value);
 }
 
 
