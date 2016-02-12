@@ -1,6 +1,6 @@
 {
   "name": "deep-map",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Recursively transforms primitive values of a JSON-like object",
   "main": "index.js",
   "files": [
