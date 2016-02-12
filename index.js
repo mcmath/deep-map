@@ -5,11 +5,9 @@ function deepMap(object, fn, opts) {
 
   if (!fn) {
     throwError(Error, 'transformFn must be defined');
-  }
-  if (!isFunction(fn)) {
+  } else if (!isFunction(fn)) {
     throwError(TypeError, 'transformFn must be a function');
-  }
-  if (!isObject(opts)) {
+  } else if (!isObject(opts)) {
     throwError(TypeError, 'options must be an object or undefined');
   }
 
