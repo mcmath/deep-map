@@ -4,8 +4,6 @@ var expect = require('chai').use(require('sinon-chai')).expect;
 var fixtures = require('./fixtures');
 var sinon = require('sinon');
 
-
-
 describe('module:index', function() {
 
   var deepMap;

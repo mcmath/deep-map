@@ -3,21 +3,17 @@
 var template = require('lodash/template');
 var sinon = require('sinon');
 
-
-
 exports.primitive = {
   source: 42,
   transform: String,
   expected: '42',
 };
 
-
 exports.flatArray = {
   source: ['one', '', 'three'],
   transform: Boolean,
   expected: [true, false, true]
 };
-
 
 exports.flatObject = {
   source: {one: 1, two: 2, three: 3},
@@ -27,7 +23,6 @@ exports.flatObject = {
   expected: {one: 1, two: 4, three: 9}
 };
 
-
 exports.nestedArrays = {
   source: ['one', 'two', ['three', 'four'], 'five'],
   transform: function(value) {
@@ -36,7 +31,6 @@ exports.nestedArrays = {
   expected: ['on', 'tw', ['th', 'fo'], 'fi']
 };
 
-
 exports.nestedObjects = {
   source: {one: 'one', two: {three: 'three', four: 'four'}, five: 'five'},
   transform: function(value) {
@@ -44,7 +38,6 @@ exports.nestedObjects = {
   },
   expected: {one: 'one!', two: {three: 'three!', four: 'four!'}, five: 'five!'}
 };
-
 
 exports.withIndex = {
   source: ['one', 'two', 'three'],
@@ -55,7 +48,6 @@ exports.withIndex = {
   expected: ['0: one', '1: two', '2: three']
 };
 
-
 exports.withKey = {
   source: {one: 1, two: 2, three: 3},
   transform: sinon.spy(function(value, key) {
@@ -64,7 +56,6 @@ exports.withKey = {
   keys: ['one', 'two', 'three'],
   expected: {one: 'one 1', two: 'two 2', three: 'three 3'}
 };
-
 
 var subObject = {four: 5};
 var superObject = [1, 2, 3, subObject];
@@ -81,7 +72,6 @@ exports.inPlace = {
   expected: [2, 4, 6, {four: 10}]
 };
 
-
 var thisArg = {multiplier: 42};
 
 exports.thisArg = {
@@ -93,7 +83,6 @@ exports.thisArg = {
   expected: [42, 84, 126]
 };
 
-
 var data = {
   name: 'Samuel Johnson',
   email: 'sam.johnson@dictionary.com',
@@ -102,7 +91,6 @@ var data = {
   hobby1: 'writing',
   hobby2: 'torying',
 };
-
 
 exports.jsonLike = {
   source: {
