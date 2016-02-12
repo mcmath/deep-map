@@ -9,14 +9,14 @@
     "LICENSE.txt"
   ],
   "scripts": {
-    "test": "istanbul cover _mocha",
-    "test:all": "npm run jshint && npm run jscs && npm test",
+    "test": "npm run jshint && npm run jscs && npm run mocha",
     "jshint": "jshint . --exclude-path .gitignore",
     "jscs": "jscs .",
-    "coverage": "npm run test && open ./coverage/lcov-report/index.html",
+    "mocha": "istanbul cover _mocha",
+    "coverage": "npm test && open ./coverage/lcov-report/index.html",
+    "coveralls": "cat ./coverage/lcov.info | coveralls",
     "clean": "rm -rf ./node_modules ./coverage",
-    "travis:after": "cat ./coverage/lcov.info | coveralls",
-    "preversion": "npm run test:all"
+    "preversion": "npm test"
   },
   "engines": {
     "node": ">=0.10"
