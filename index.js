@@ -1,5 +1,7 @@
 'use strict';
 
+var isArray = Array.isArray;
+
 function deepMap(object, fn, opts) {
   opts = opts || {};
 
@@ -11,11 +13,11 @@ function deepMap(object, fn, opts) {
     throwError(TypeError, 'options must be an object or undefined');
   }
 
-  return transform(object, fn, opts);
+  return map(object, fn, opts);
 }
 
-function transform(value, fn, opts, key) {
-  return Array.isArray(value) ? mapArray(value, fn, opts) :
+function map(value, fn, opts, key) {
+  return isArray(value) ? mapArray(value, fn, opts) :
     isObject(value) ? mapObject(value, fn, opts) :
     fn.call(opts.thisArg, value, key);
 }
@@ -25,7 +27,7 @@ function mapArray(array, fn, opts) {
 
   var length = array.length;
   for (var i = 0; i < length; i++) {
-    result[i] = transform(array[i], fn, opts, i);
+    result[i] = map(array[i], fn, opts, i);
   }
 
   return result;
@@ -35,7 +37,7 @@ function mapObject(object, fn, opts) {
   var result = opts.inPlace ? object : {};
 
   for (var key in object) {
-    result[key] = transform(object[key], fn, opts, key);
+    result[key] = map(object[key], fn, opts, key);
   }
 
   return result;

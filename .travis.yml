@@ -1,12 +1,19 @@
 language: node_js
 node_js:
-  - "stable"
-  - "5.0"
-  - "4.0"
+  - "6"
+  - "4"
   - "0.12"
   - "0.10"
-after_script:
+after_success:
   - npm run coveralls
-branches:
-  only:
-    - master
+deploy:
+  provider: npm
+  email:
+    secure: LJrKNR1urq+kl4x/rnuRMZZBCVFEItYCH5XKPFlCTuKXeAtfDgXat6EPGTLINf8QYPFcB+LtgCxCOT0uHgjp/JIrBaDXIlh1R/JHwLbcuuErIV0BcSJ6E7vc+TMaDWklX81FNvo4F5S77PhcW6uNeU82jCdXcdRY4xkRew5p4/KOsbuE3JHpvSmK6hFmZQzWFV+7nsrdge/IUMbwCh4aG3BLwLl1JUT/8zPOxfcZdU9VSmsgND0eQre/PC3Q+27qIZU45wenbD5TtSe4Ps7v5bAayMp6Ftv9fhdDYZF0HCzZbJsifQhYm69gb5nRwPEKUpobaKEyShv5kQ1/Pq8Y4iJbaIV+4BLrRqhWhIfbRWO+Wkivqti8lMCgLY+2U9GPMdmqk7cr2IRYFlxGjpWFV4g4cWYBuqt3ppMnYSiOzQdEIyyiRzNc8cWDtWHNH11hDXj4FE11NqsKUljc1gfpE8BLmSTTA9ED+SfZbV1mQnSRw1BN9amvNmRK424IbXtkP/cftdU03nrCD2bB1NSaiDMKuoZx8AxywzUuF5lAZtI8/C8vUTpyKUN7rvttr3Sn+WwA7Gx5+UC/qMZ0jUElR84ujvaiGOMjlzxy83m5+EGX3n23RfWn5eZil35jz6LUeJKMMGl5UTZ4pbTTP4AWkIGeaAJfJb13o1f79LbDN7Y=
+  api_key:
+    secure: E5iBlZDws/vjwNEhQ/qZxKs+7/lbIsK8DOPs4l2nBZuDZL8EBfpSIUMelXPCNTxShsUY4UBrtcFmnHp2gcc4d300/3oG/KJQFOAf0dDkJHVJdYgjKVWxOLX499jlSxYCI+MPvgIU7zglw1seI2K6ahxp7i/ngJVg99mlvLH8LuqG7XMOvA6OttwKZJBpJDt+dC3eRHS6bSv6wahtnpU1RH0I1clcAulxzeRC4z5fs+wKmKAqfPRz4cDdIIFeaQxjGccwDnBCjg3MmdIIYFSXAqnNmSi6knEObe+rFIXm+eoY+Wqo/7JGvwh8Bv1kciK362PzDJgeLR0nFhGE2STVPlJ5Ap57XuSDnBDfLj+DyTtsSDVr/PTjyHj+XFhC5VPUdN0zgAwdw5JLpq63re2mk71gmsVKAlmXDFDm99PS9udaEdjv+tMMiDzTwcMxpMNEjyuOgwXJtS1K6YNRCa3iT2NLAiGTVHHCxXaU85ygzMFmWVCebzpNDZh6OlSRhoxFH5bfubnIjLBtbw0glGjwZ+mCKXlMaikdtMvA4e7NKTvRvmiQeIbxcmkDGFti8xZLDUOzTCYE/huG+o96N+jxElUTvBhCnSoi9rvdSu1pDUFfw9Cy8qANGroU/nCFUVbDRs2RhgC6osd9BMfvUvWNlOeozgx85skngXosbbUyBgU=
+  skip_cleanup: true
+  on:
+    repo: akim-mcmath/deep-map
+    node: "4"
+    tags: true

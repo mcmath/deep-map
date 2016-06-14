@@ -18,6 +18,9 @@ Install via [npm][npm]:
 npm install --save deep-map
 ```
 
+[TypeScript][typescript] declarations are also included in the package. Just
+import the package everything will just work.
+
 ## Example
 
 Suppose we have an object containing some nested template strings:
@@ -146,5 +149,6 @@ Copyright &copy; 2016 Akim McMath. Licensed under the [MIT License][license].
 [coveralls]: https://coveralls.io/github/akim-mcmath/deep-map?branch=master
 [gemnasium]: https://gemnasium.com/akim-mcmath/deep-map
 
+[typescript]: http://www.typescriptlang.org/
 [array-map]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
 [object-map-values]: https://lodash.com/docs#mapValues

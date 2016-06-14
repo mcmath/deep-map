@@ -6,7 +6,7 @@ var sinon = require('sinon');
 exports.primitive = {
   source: 42,
   transform: String,
-  expected: '42',
+  expected: '42'
 };
 
 exports.flatArray = {
@@ -89,7 +89,7 @@ var data = {
   keyword1: 'dictionary',
   keyword2: 'lexicography',
   hobby1: 'writing',
-  hobby2: 'torying',
+  hobby2: 'torying'
 };
 
 exports.jsonLike = {
@@ -119,5 +119,5 @@ exports.jsonLike = {
       primary: 'writing',
       secondary: 'torying'
     }
-  },
+  }
 };
