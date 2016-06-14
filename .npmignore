@@ -4,4 +4,4 @@
 /.eslintrc.yml
 /.gitignore
 /.travis.yml
-/.tsconfig.json
+/tsconfig.json
