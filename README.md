@@ -95,7 +95,7 @@ original or any of its nested objects.
 
 `object|array`
 
-The object to iterate over. This may be an object or an array, and may contain
+The object to transform. This may be an object or an array, and may contain
 nested objects and/or arrays.
 
 ##### transformFn
