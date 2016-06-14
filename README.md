@@ -144,7 +144,7 @@ Copyright &copy; 2016 Akim McMath. Licensed under the [MIT License][license].
 [dependencies-badge]: https://img.shields.io/gemnasium/akim-mcmath/deep-map.svg?style=flat-square
 
 [npm]: https://www.npmjs.com/package/deep-map
-[license]: LICENSE.txt
+[license]: LICENSE
 [travis]: https://travis-ci.org/akim-mcmath/deep-map
 [coveralls]: https://coveralls.io/github/akim-mcmath/deep-map?branch=master
 [gemnasium]: https://gemnasium.com/akim-mcmath/deep-map
