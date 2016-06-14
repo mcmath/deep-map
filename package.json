@@ -1,22 +1,16 @@
 {
   "name": "deep-map",
   "version": "1.1.0",
-  "description": "Recursively transforms primitive values of a JSON-like object",
+  "description": "Transforms primitive values of JSON-like objects",
   "main": "index.js",
-  "files": [
-    "index.js",
-    "README.md",
-    "LICENSE.txt"
-  ],
+  "typings": "index.d.ts",
   "scripts": {
-    "test": "npm run jshint && npm run jscs && npm run mocha",
-    "jshint": "jshint . --exclude-path .gitignore",
-    "jscs": "jscs .",
-    "mocha": "istanbul cover _mocha",
-    "coverage": "npm test && open ./coverage/lcov-report/index.html",
-    "coveralls": "cat ./coverage/lcov.info | coveralls",
-    "clean": "rm -rf ./node_modules ./coverage",
-    "preversion": "npm test"
+    "test:typings": "tsc",
+    "test:lint": "eslint index.js test",
+    "test:unit": "istanbul cover _mocha",
+    "test:report": "npm test && open coverage/lcov-report/index.html",
+    "test": "npm run test:typings && npm run test:lint && npm run test:unit",
+    "coveralls": "cat coverage/lcov.info | coveralls"
   },
   "engines": {
     "node": ">=0.10"
@@ -33,7 +27,9 @@
     "object",
     "array",
     "json",
-    "primitive"
+    "primitive",
+    "typescript",
+    "typings"
   ],
   "author": "Akim McMath <akim.elijah.mcmath@gmail.com>",
   "license": "MIT",
@@ -44,13 +40,13 @@
   "dependencies": {},
   "devDependencies": {
     "chai": "^3.5.0",
-    "coveralls": "^2.11.6",
-    "istanbul": "^0.4.2",
-    "jscs": "^2.9.0",
-    "jshint": "^2.9.1",
-    "lodash": "^4.3.0",
-    "mocha": "^2.4.5",
-    "sinon": "^1.17.3",
-    "sinon-chai": "^2.8.0"
+    "coveralls": "^2.11.9",
+    "eslint": "^2.12.0",
+    "istanbul": "^0.4.3",
+    "lodash": "^4.13.1",
+    "mocha": "^2.5.3",
+    "sinon": "^1.17.4",
+    "sinon-chai": "^2.8.0",
+    "typescript": "^1.8.10"
   }
 }
