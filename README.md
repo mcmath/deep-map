@@ -1,4 +1,4 @@
-# deep-map
+# Deep Map
 
 [![Version][version-badge]][npm]
 [![License][license-badge]][license]
@@ -6,33 +6,30 @@
 [![Coverage][coverage-badge]][coveralls]
 [![Dependencies][dependencies-badge]][gemnasium]
 
-Recurses through a JSON-like object and transforms its primitive values.
-Effectively applies [*array*.map()][array-map] to each nested array and
-[\_.mapValues()][object-map-values] to each nested object.
+[Install](#install) | [Usage](#usage) | [API](#api) | [TypeScript](#typescript) | [License](#license)
+
+**Deep Map** recurses through an object and transforms its primitive values
+&ndash; including nested values &ndash; according to some function. Essentially,
+it works like [`Array.prototype.map()`][array-prototype-map], except that it
+works on all objects rather than just on Arrays.
 
 ## Install
 
-Install via [npm][npm]:
+Install Deep Map via [npm][npm].
 
 ```sh
 npm install --save deep-map
 ```
 
-[TypeScript][typescript] declarations are also included in the package. Just
-import the package everything will just work.
+## Usage
 
-## Example
-
-Suppose we have an object containing some nested template strings:
+Let's say we have an object like this:
 
 ```js
-const templateObject = {
+const info = {
   name: '<%- name %>',
   email: '<%- email %>',
-  keywords: [
-    '<%- keyword1 %>',
-    '<%- keyword2 %>'
-  ],
+  keywords: ['<%- keyword1 %>', '<%- keyword2 %>'],
   hobbies: {
     primary: '<%- hobby1 %>',
     secondary: '<%- hobby2 %>'
@@ -40,7 +37,7 @@ const templateObject = {
 };
 ```
 
-And we want to fill it with the following data:
+And we want to fill it with this data:
 
 ```js
 const data = {
@@ -53,85 +50,129 @@ const data = {
 };
 ```
 
-We can use deepMap like so:
+We can use Deep Map like this:
 
 ```js
 const deepMap = require('deep-map');
 const template = require('lodash/template');
-const fs = require('fs');
 
-
-let result = deepMap(templateObject, (value) => {
-  return template(value)(data);
-});
-
-
-fs.writeFileSync('johnson.json', JSON.stringify(result, null, 2));
+let result = deepMap(info, value => template(value)(data));
 ```
 
-And here is the result:
+And the result looks like this:
 
-```json
+```js
 {
-  "name": "Samuel Johnson",
-  "email": "sam.johnson@dictionary.com",
-  "keywords": [
-    "dictionary",
-    "lexicography"
-  ],
-  "hobbies": {
-    "primary": "writing",
-    "secondary": "torying"
+  name: 'Samuel Johnson',
+  email: 'sam.johnson@dictionary.com',
+  keywords: ['dictionary', 'lexicography'],
+  hobbies: {
+    primary: 'writing',
+    secondary: 'torying'
+  }
 }
 ```
 
 ## API
 
-### `deepMap(object, transformFn, [options])`
+#### `deepMap(object, mapFn, [options])`
 
-Performs a transformation on each *primitive* value in an object or array.
-Properties and indices are visited recursively, so nested primitives will
-be transformed. By default, a new object is returned without modifying the
-original or any of its nested objects.
+#### Parameters
 
-##### object
-
-`object|array`
-
-The object to transform. This may be an object or an array, and may contain
-nested objects and/or arrays.
-
-##### transformFn
-
-`function`
-
-The function to call for each primitive value. The return value of the function
-determines the transformed value. The function is invoked with two
-arguments:
-
-* **value**: The primitive value being transformed.
-
-* **key**/**index**: The name of the key at the present node in the case of an
-object, or the index value in the case of an array.
-
-
-##### options
-
-`object` (optional)
-
-An options object. The following options are accepted:
-
-* **thisArg**: Set the `this` context within `transformFn`.
-
-* **inPlace**: Mutate the object passed-in rather than returning a new object.
-Nested objects are also transformed in-place.
+<table>
+  <thead>
+    <tr>
+      <th align="left">Param</th>
+      <th align="left">Type</th>
+      <th align="left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>object</td>
+      <td><code>any</code></td>
+      <td>
+        The object whose values are to be transformed. Typically, this will be
+        a complex object containing other nested objects. This object may be an
+        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">
+        <code>Array</code></a>, and may contain nested arrays whose values will
+        be deeply transformed in the same way. In the unlikely use-case in which
+        a primitive value is passed, `mapFn()` will be applied once and the
+        result returned.
+      </td>
+    </tr>
+    <tr>
+      <td>mapFn</td>
+      <td><code>function</code></td>
+      <td>
+        The function used to transform each primitive value. The function is
+        called with two arguments:
+        <ul>
+          <li>
+            <strong>value</strong> &lt;<code>any</code>&gt;
+            The value being transformed
+          </li>
+          <li>
+            <strong>key</strong> &lt;<code>string | number</code>&gt;
+            The key name or numerical index of the value being transformed
+          </li>
+        </ul>
+        The return value determines the value at the same position on the
+        resulting object.
+      </td>
+    </tr>
+    <tr>
+      <td>[options]</td>
+      <td><code>object</code></td>
+      <td>
+        An optional options object. The following options are accepted:
+        <ul>
+          <li>
+            <strong>inPlace</strong> &lt;<code>boolean = false</code>&gt;
+            Transform <code>object</code> in-place rather than constructing
+            a new object
+          </li>
+          <li>
+            <strong>thisArg</strong> &lt;<code>any = undefined</code>&gt;
+            Sets the value of
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this"><code>this</code></a>
+            within <code>mapFn()</code>
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 #### Returns
 
-`object|array`
+Returns a new object with the same keys as `object`. If `options.inPlace` is set
+to `true`, the original object is returned mutated.
 
-Returns a new object, unless the `inPlace` option is set, in which case the
-old object is returned transformed.
+## TypeScript
+
+[TypeScript][typescript] declarations are included in the package. Just import
+the module, and things will just work.
+
+By default, the compiler will assume that the return value will have the same
+shape as the input object. In most use cases, this is likely to be true. But in
+some cases &ndash; like the one below &ndash; the assumption breaks down.
+
+```ts
+function isPositive(n: number): boolean {
+  return n >= 0;
+}
+
+// COMPILER ERROR: number not assignable to boolean :(
+let bool: boolean = deepMap({n: 2}, isPositive).n;
+```
+
+Pass a type argument to describe the shape of the return value, and everything
+will be happy.
+
+```ts
+let bool: boolean = deepMap<{n: boolean}>({n: 2}, isPositive).n; // :)
+```
 
 ## License
 
@@ -142,13 +183,10 @@ Copyright &copy; 2016 Akim McMath. Licensed under the [MIT License][license].
 [build-badge]: https://img.shields.io/travis/akim-mcmath/deep-map/master.svg?style=flat-square
 [coverage-badge]: https://img.shields.io/coveralls/akim-mcmath/deep-map/master.svg?style=flat-square&service=github
 [dependencies-badge]: https://img.shields.io/gemnasium/akim-mcmath/deep-map.svg?style=flat-square
-
 [npm]: https://www.npmjs.com/package/deep-map
 [license]: LICENSE
 [travis]: https://travis-ci.org/akim-mcmath/deep-map
 [coveralls]: https://coveralls.io/github/akim-mcmath/deep-map?branch=master
 [gemnasium]: https://gemnasium.com/akim-mcmath/deep-map
-
 [typescript]: http://www.typescriptlang.org/
-[array-map]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
-[object-map-values]: https://lodash.com/docs#mapValues
+[array-prototype-map]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map

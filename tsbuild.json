@@ -5,11 +5,12 @@
     "declaration": true,
     "sourceMap": true,
     "noImplicitAny": true,
-    "noEmit": true
+    "rootDir": "src",
+    "outDir": "lib"
   },
   "compileOnSave": false,
-  "exclude": [
-    "node_modules",
-    "lib"
+  "files": [
+    "src/index.ts",
+    "typings/index.d.ts"
   ]
 }

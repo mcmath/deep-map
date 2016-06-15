@@ -4,8 +4,12 @@ node_js:
   - "4"
   - "0.12"
   - "0.10"
+before_script:
+  - npm run ci:typings
 after_success:
-  - npm run coveralls
+  - npm run ci:coveralls
+before_deploy:
+  - npm run build
 deploy:
   provider: npm
   email:
@@ -17,3 +21,5 @@ deploy:
     repo: akim-mcmath/deep-map
     node: "4"
     tags: true
+after_deploy:
+  - npm run build:remove

@@ -1,16 +1,19 @@
 {
   "name": "deep-map",
   "version": "1.2.1",
-  "description": "Transforms primitive values of JSON-like objects",
-  "main": "index.js",
-  "typings": "index.d.ts",
+  "description": "Transforms nested values of complex objects",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
   "scripts": {
-    "test:typings": "tsc",
-    "test:lint": "eslint index.js test",
-    "test:unit": "istanbul cover _mocha",
+    "build:compile": "tsc -p tsbuild.json",
+    "build:remove": "rimraf lib",
+    "build": "npm run build:remove && npm run build:compile",
+    "test:lint": "tslint 'src/**/*.ts'",
+    "test:unit": "istanbul cover -e .ts -x '*.test.ts' _mocha -- 'src/**/*.test.ts' --compilers ts:ts-node/register",
     "test:report": "npm test && open coverage/lcov-report/index.html",
-    "test": "npm run test:typings && npm run test:lint && npm run test:unit",
-    "coveralls": "cat coverage/lcov.info | coveralls"
+    "test": "npm run test:lint && npm run test:unit",
+    "ci:typings": "typings install",
+    "ci:coveralls": "cat coverage/lcov.info | coveralls"
   },
   "engines": {
     "node": ">=0.10"
@@ -37,16 +40,17 @@
     "url": "https://github.com/akim-mcmath/deep-map/issues"
   },
   "homepage": "https://github.com/akim-mcmath/deep-map#readme",
-  "dependencies": {},
   "devDependencies": {
     "chai": "^3.5.0",
     "coveralls": "^2.11.9",
-    "eslint": "^2.12.0",
-    "istanbul": "^0.4.3",
-    "lodash": "^4.13.1",
+    "istanbul": "1.0.0-alpha.2",
     "mocha": "^2.5.3",
+    "rimraf": "^2.5.2",
     "sinon": "^1.17.4",
     "sinon-chai": "^2.8.0",
-    "typescript": "^1.8.10"
+    "ts-node": "^0.9.1",
+    "tslint": "^3.11.0",
+    "typescript": "^1.8.10",
+    "typings": "^1.1.0"
   }
 }
