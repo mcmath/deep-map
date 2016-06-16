@@ -23,7 +23,7 @@
     }],
     "ban": false,
     "curly": false,
-    "forin": false,
+    "forin": true,
     "label-position": true,
     "no-arg": true,
     "no-bitwise": false,

@@ -47,7 +47,9 @@ function mapObject(obj: {[key: string]: any}, fn: MapFn, opts: Options): {[key: 
   let result = opts.inPlace ? obj : {};
 
   for (let key in obj) {
-    result[key] = map(obj[key], fn, opts, key);
+    if (obj.hasOwnProperty(key)) {
+      result[key] = map(obj[key], fn, opts, key);
+    }
   }
 
   return result;
