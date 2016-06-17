@@ -10,8 +10,11 @@
 
 **Deep Map** recurses through an object and transforms its primitive values
 &ndash; including nested values &ndash; according to some function. Essentially,
-it works like [`Array.prototype.map()`][array-prototype-map], except that it
+it's a deep version of [`Array.prototype.map()`][array-prototype-map] that
 works on all objects rather than just on Arrays.
+
+To transform the *keys* of an object rather than its values, use
+[Deep Map Keys][deep-map-keys].
 
 ## Install
 
@@ -97,8 +100,8 @@ And the result looks like this:
         <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">
         <code>Array</code></a>, and may contain nested arrays whose values will
         be deeply transformed in the same way. In the unlikely use-case in which
-        a primitive value is passed, `mapFn()` will be applied once and the
-        result returned.
+        a primitive value is passed, <code>mapFn()</code> will be applied once
+        and the result returned.
       </td>
     </tr>
     <tr>
@@ -147,7 +150,7 @@ And the result looks like this:
 #### Returns
 
 Returns a new object with the same keys as `object`. If `options.inPlace` is set
-to `true`, the original object is returned mutated.
+to `true`, the original object is returned, mutated.
 
 ## TypeScript
 
@@ -188,5 +191,6 @@ Copyright &copy; 2016 Akim McMath. Licensed under the [MIT License][license].
 [travis]: https://travis-ci.org/akim-mcmath/deep-map
 [coveralls]: https://coveralls.io/github/akim-mcmath/deep-map?branch=master
 [gemnasium]: https://gemnasium.com/akim-mcmath/deep-map
+[deep-map-keys]: https://github.com/akim-mcmath/deep-map-keys
 [typescript]: http://www.typescriptlang.org/
 [array-prototype-map]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
