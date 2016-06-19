@@ -39,6 +39,18 @@ describe('deepMap(object, mapFn, [options])', () => {
         .should.deep.equal([4, {three: 9, four: 16}, [25, 36]]);
     });
 
+    it('transforms an object with circular references', () => {
+      let obj = {two: 2, arr: [3, 4], self: null as any, arr2: null as any[]};
+      obj.self = obj;
+      obj.arr2 = obj.arr;
+
+      let exp = {two: 4, arr: [9, 16], self: null as any, arr2: null as any[]};
+      exp.self = exp;
+      exp.arr2 = exp.arr;
+
+      deepMap(obj, square).should.deep.equal(exp);
+    });
+
   });
 
   describe('@mapFn(value: any, key: string|number): any', () => {

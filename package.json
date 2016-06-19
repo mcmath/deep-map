@@ -5,11 +5,11 @@
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "scripts": {
-    "build:compile": "tsc -p tsbuild.json",
+    "build:compile": "tsc",
     "build:remove": "rimraf lib",
     "build": "npm run build:remove && npm run build:compile",
     "test:lint": "tslint 'src/**/*.ts'",
-    "test:unit": "istanbul cover -e .ts -x '*.test.ts' _mocha -- 'src/**/*.test.ts' --compilers ts:ts-node/register",
+    "test:unit": "istanbul cover -e .ts -x '*.test.ts' _mocha -- src --opts mocha.opts",
     "test:report": "npm test && open coverage/lcov-report/index.html",
     "test": "npm run test:lint && npm run test:unit",
     "ci:typings": "typings install",
@@ -29,6 +29,7 @@
     "nested",
     "object",
     "array",
+    "circular",
     "json",
     "primitive",
     "typescript",
@@ -52,5 +53,9 @@
     "tslint": "^3.11.0",
     "typescript": "^1.8.10",
     "typings": "^1.1.0"
+  },
+  "dependencies": {
+    "es6-weak-map": "^2.0.1",
+    "lodash": "^4.13.1"
   }
 }
