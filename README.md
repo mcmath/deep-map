@@ -113,11 +113,13 @@ And the result looks like this:
         <ul>
           <li>
             <strong>value</strong> &lt;<code>any</code>&gt;
-            The value being transformed
+            The value being transformed.
           </li>
           <li>
             <strong>key</strong> &lt;<code>string | number</code>&gt;
-            The key name or numerical index of the value being transformed
+            The key or index of the value being transformed. In the case
+            of plain objects, this will be a string; in the case of arrays,
+            this will be a number.
           </li>
         </ul>
         The return value determines the value at the same position on the
@@ -132,14 +134,14 @@ And the result looks like this:
         <ul>
           <li>
             <strong>inPlace</strong> &lt;<code>boolean=false</code>&gt;
-            Transform <code>object</code> in-place rather than constructing
-            a new object
+            Mutate <code>object</code> rather than constructing a new
+            object. Nested objects will also be mutated.
           </li>
           <li>
             <strong>thisArg</strong> &lt;<code>any=undefined</code>&gt;
             Sets the value of
             <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this"><code>this</code></a>
-            within <code>mapFn()</code>
+            within <code>mapFn()</code>.
           </li>
         </ul>
       </td>
