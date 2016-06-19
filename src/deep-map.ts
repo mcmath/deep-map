@@ -25,12 +25,12 @@ export class DeepMap {
   ) { }
 
   public map(value: any, key?: string|number): any {
-    return isArray(value) ? this.mapArray(value, key) :
-      isObject(value) ? this.mapObject(value, key) :
+    return isArray(value) ? this.mapArray(value) :
+      isObject(value) ? this.mapObject(value) :
       this.mapFn.call(this.opts.thisArg, value, key);
   }
 
-  private mapArray(arr: any[], key: string|number): any[] {
+  private mapArray(arr: any[]): any[] {
     if (this.cache.has(arr)) {
       return this.cache.get(arr);
     }
@@ -46,7 +46,7 @@ export class DeepMap {
     return result;
   }
 
-  private mapObject(obj: NonPrimitive, key: string|number): NonPrimitive {
+  private mapObject(obj: NonPrimitive): NonPrimitive {
     if (this.cache.has(obj)) {
       return this.cache.get(obj);
     }
