@@ -131,12 +131,12 @@ And the result looks like this:
         An optional options object. The following options are accepted:
         <ul>
           <li>
-            <strong>inPlace</strong> &lt;<code>boolean = false</code>&gt;
+            <strong>inPlace</strong> &lt;<code>boolean=false</code>&gt;
             Transform <code>object</code> in-place rather than constructing
             a new object
           </li>
           <li>
-            <strong>thisArg</strong> &lt;<code>any = undefined</code>&gt;
+            <strong>thisArg</strong> &lt;<code>any=undefined</code>&gt;
             Sets the value of
             <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this"><code>this</code></a>
             within <code>mapFn()</code>
