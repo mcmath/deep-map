@@ -11,7 +11,8 @@
 **Deep Map** recurses through an object and transforms its primitive values
 &ndash; including nested values &ndash; according to some function. Essentially,
 it's a deep version of [`Array.prototype.map()`][array-prototype-map] that
-works on all objects rather than just on Arrays.
+works on all objects rather than just on Arrays. Circular references are
+supported.
 
 To transform the *keys* of an object rather than its values, use
 [Deep Map Keys][deep-map-keys].
@@ -99,9 +100,8 @@ And the result looks like this:
         a complex object containing other nested objects. This object may be an
         <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">
         <code>Array</code></a>, and may contain nested arrays whose values will
-        be deeply transformed in the same way. In the unlikely use-case in which
-        a primitive value is passed, <code>mapFn()</code> will be applied once
-        and the result returned.
+        be deeply transformed in the same way. The object may contain circular
+        references.
       </td>
     </tr>
     <tr>

@@ -5,7 +5,8 @@
     "declaration": true,
     "sourceMap": true,
     "noImplicitAny": true,
-    "noEmit": true
+    "rootDir": "src",
+    "outDir": "lib"
   },
   "compileOnSave": false,
   "exclude": [
