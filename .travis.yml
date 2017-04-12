@@ -2,10 +2,6 @@ language: node_js
 node_js:
   - "6"
   - "4"
-  - "0.12"
-  - "0.10"
-before_script:
-  - npm run ci:typings
 after_success:
   - npm run ci:coveralls
 before_deploy:
@@ -18,7 +14,7 @@ deploy:
     secure: E5iBlZDws/vjwNEhQ/qZxKs+7/lbIsK8DOPs4l2nBZuDZL8EBfpSIUMelXPCNTxShsUY4UBrtcFmnHp2gcc4d300/3oG/KJQFOAf0dDkJHVJdYgjKVWxOLX499jlSxYCI+MPvgIU7zglw1seI2K6ahxp7i/ngJVg99mlvLH8LuqG7XMOvA6OttwKZJBpJDt+dC3eRHS6bSv6wahtnpU1RH0I1clcAulxzeRC4z5fs+wKmKAqfPRz4cDdIIFeaQxjGccwDnBCjg3MmdIIYFSXAqnNmSi6knEObe+rFIXm+eoY+Wqo/7JGvwh8Bv1kciK362PzDJgeLR0nFhGE2STVPlJ5Ap57XuSDnBDfLj+DyTtsSDVr/PTjyHj+XFhC5VPUdN0zgAwdw5JLpq63re2mk71gmsVKAlmXDFDm99PS9udaEdjv+tMMiDzTwcMxpMNEjyuOgwXJtS1K6YNRCa3iT2NLAiGTVHHCxXaU85ygzMFmWVCebzpNDZh6OlSRhoxFH5bfubnIjLBtbw0glGjwZ+mCKXlMaikdtMvA4e7NKTvRvmiQeIbxcmkDGFti8xZLDUOzTCYE/huG+o96N+jxElUTvBhCnSoi9rvdSu1pDUFfw9Cy8qANGroU/nCFUVbDRs2RhgC6osd9BMfvUvWNlOeozgx85skngXosbbUyBgU=
   skip_cleanup: true
   on:
-    repo: akim-mcmath/deep-map
+    repo: mcmath/deep-map
     node: "4"
     tags: true
 after_deploy:

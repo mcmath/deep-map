@@ -181,18 +181,18 @@ let bool: boolean = deepMap<{n: boolean}>({n: 2}, isPositive).n; // :)
 
 ## License
 
-Copyright &copy; 2016 Akim McMath. Licensed under the [MIT License][license].
+Copyright &copy; 2016&ndash;2017 Akim McMath. Licensed under the [MIT License][license].
 
 [version-badge]: https://img.shields.io/npm/v/deep-map.svg?style=flat-square
 [license-badge]: https://img.shields.io/npm/l/deep-map.svg?style=flat-square
-[build-badge]: https://img.shields.io/travis/akim-mcmath/deep-map/master.svg?style=flat-square
-[coverage-badge]: https://img.shields.io/coveralls/akim-mcmath/deep-map/master.svg?style=flat-square&service=github
-[dependencies-badge]: https://img.shields.io/gemnasium/akim-mcmath/deep-map.svg?style=flat-square
+[build-badge]: https://img.shields.io/travis/mcmath/deep-map/master.svg?style=flat-square
+[coverage-badge]: https://img.shields.io/coveralls/mcmath/deep-map/master.svg?style=flat-square&service=github
+[dependencies-badge]: https://img.shields.io/gemnasium/mcmath/deep-map.svg?style=flat-square
 [npm]: https://www.npmjs.com/package/deep-map
 [license]: LICENSE
-[travis]: https://travis-ci.org/akim-mcmath/deep-map
-[coveralls]: https://coveralls.io/github/akim-mcmath/deep-map?branch=master
-[gemnasium]: https://gemnasium.com/akim-mcmath/deep-map
-[deep-map-keys]: https://github.com/akim-mcmath/deep-map-keys
+[travis]: https://travis-ci.org/mcmath/deep-map
+[coveralls]: https://coveralls.io/github/mcmath/deep-map?branch=master
+[gemnasium]: https://gemnasium.com/mcmath/deep-map
+[deep-map-keys]: https://github.com/mcmath/deep-map-keys
 [typescript]: http://www.typescriptlang.org/
 [array-prototype-map]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map

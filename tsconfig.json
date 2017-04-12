@@ -1,15 +1,32 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
+    "target": "ES5",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "rootDir": "src",
+    "outDir": "lib",
+    "newLine": "lf",
     "declaration": true,
     "sourceMap": true,
+    "forceConsistentCasingInFileNames": true,
+    "importHelpers": true,
+    "noEmitHelpers": true,
+    "noEmitOnError": true,
     "noImplicitAny": true,
-    "rootDir": "src",
-    "outDir": "lib"
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "preserveConstEnums": true,
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    "stripInternal": true,
+    "suppressImplicitAnyIndexErrors": true
   },
   "compileOnSave": false,
+  "include": [
+    "src/**/*.ts"
+  ],
   "exclude": [
+    "coverage",
     "node_modules",
     "lib"
   ]
