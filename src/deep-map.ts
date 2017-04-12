@@ -1,13 +1,13 @@
 import WeakMap = require('es6-weak-map');
-import {isArray, isObject} from 'lodash';
+import {isArray, isObject, isFunction, isNil} from 'lodash';
 
-interface NonPrimitive extends Object {
-  [key: string]: any;
-  [index: number]: any;
+export interface DeepMapModule {
+  <T>(object: any, mapFn: MapFn, options?: Opts): T;
+  default<T>(object: any, mapFn: MapFn, options?: Opts): T;
 }
 
 export interface MapFn {
-  (value: any, key: string|number): any;
+  (value: any, key: string | number): any;
 }
 
 export interface Opts {
@@ -15,16 +15,32 @@ export interface Opts {
   inPlace?: boolean;
 }
 
-export class DeepMap {
+export const deepMapModule: DeepMapModule = function deepMap(object: any, mapFn: MapFn, options?: Opts): any {
+  options = isNil(options) ? {} : options;
 
-  private cache = new WeakMap<NonPrimitive, any>();
+  if (!mapFn) {
+    throw new Error('mapFn is required');
+  } else if (!isFunction(mapFn)) {
+    throw new TypeError('mapFn must be a function');
+  } else if (!isObject(options)) {
+    throw new TypeError('options must be an object');
+  }
+
+  return new DeepMap(mapFn, options).map(object);
+} as any;
+
+deepMapModule.default = deepMapModule;
+
+class DeepMap {
+
+  private cache = new WeakMap<object, any>();
 
   constructor(
     private mapFn: MapFn,
     private opts: Opts
   ) { }
 
-  public map(value: any, key?: string|number): any {
+  public map(value: any, key?: string | number): any {
     return isArray(value) ? this.mapArray(value) :
       isObject(value) ? this.mapObject(value) :
       this.mapFn.call(this.opts.thisArg, value, key);
@@ -46,7 +62,7 @@ export class DeepMap {
     return result;
   }
 
-  private mapObject(obj: NonPrimitive): NonPrimitive {
+  private mapObject(obj: object): object {
     if (this.cache.has(obj)) {
       return this.cache.get(obj);
     }
@@ -54,7 +70,7 @@ export class DeepMap {
     let result = this.opts.inPlace ? obj : {};
     this.cache.set(obj, result);
 
-    for (let key in obj) {
+    for (let key in obj as any) {
       if (obj.hasOwnProperty(key)) {
         result[key] = this.map(obj[key], key);
       }

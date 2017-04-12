@@ -1,7 +1,9 @@
 import chai = require('chai');
 import sinonChai = require('sinon-chai');
 import sinon = require('sinon');
-import deepMap = require('./');
+import deepMap from './';
+
+declare var require: any;
 
 before(() => {
   chai.use(sinonChai);
@@ -17,6 +19,11 @@ describe('deepMap(object, mapFn, [options])', () => {
 
   it('exports a function', () => {
     deepMap.should.be.a('function');
+  });
+
+  it('may be imported as a CommonJS module or ES2015 default import', () => {
+    require('./').should.equal(deepMap);
+    require('./').default.should.equal(deepMap);
   });
 
   describe('@object: any', () => {
@@ -40,11 +47,11 @@ describe('deepMap(object, mapFn, [options])', () => {
     });
 
     it('transforms an object with circular references', () => {
-      let obj = {two: 2, arr: [3, 4], self: null as any, arr2: null as any[]};
+      let obj = {two: 2, arr: [3, 4], self: null as any, arr2: null as any};
       obj.self = obj;
       obj.arr2 = obj.arr;
 
-      let exp = {two: 4, arr: [9, 16], self: null as any, arr2: null as any[]};
+      let exp = {two: 4, arr: [9, 16], self: null as any, arr2: null as any};
       exp.self = exp;
       exp.arr2 = exp.arr;
 
@@ -119,7 +126,7 @@ describe('deepMap(object, mapFn, [options])', () => {
       });
 
       it('transforms sub-objects/sub-arrays in place', () => {
-        deepMap(obj, square, {inPlace: true}).arr.should.equal(arr);
+        (deepMap(obj, square, {inPlace: true}) as any).arr.should.equal(arr);
       });
 
       it('defaults to false', () => {

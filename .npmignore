@@ -1,11 +1,9 @@
 /coverage/
-/typings/
 /src/
-/lib/**/*.test.*
 /.editorconfig
 /.gitignore
 /.travis.yml
-/custom.d.ts
 /mocha.opts
+/tsconfig.build.json
 /tsconfig.json
 /tslint.json
