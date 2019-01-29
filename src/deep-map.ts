@@ -1,5 +1,5 @@
 import WeakMap = require('es6-weak-map');
-import {isArray, isObject, isFunction, isNil} from 'lodash';
+import { isArray, isObject, isFunction, isNil } from 'lodash';
 
 export interface DeepMapModule {
   <T>(object: any, mapFn: MapFn, options?: Opts): T;

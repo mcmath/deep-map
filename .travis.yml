@@ -1,21 +1,21 @@
 language: node_js
 node_js:
-  - "6"
-  - "4"
+- '11'
+- '6'
 after_success:
-  - npm run ci:coveralls
+- npm run coveralls
 before_deploy:
-  - npm run build
+- npm run build
 deploy:
   provider: npm
   email:
     secure: LJrKNR1urq+kl4x/rnuRMZZBCVFEItYCH5XKPFlCTuKXeAtfDgXat6EPGTLINf8QYPFcB+LtgCxCOT0uHgjp/JIrBaDXIlh1R/JHwLbcuuErIV0BcSJ6E7vc+TMaDWklX81FNvo4F5S77PhcW6uNeU82jCdXcdRY4xkRew5p4/KOsbuE3JHpvSmK6hFmZQzWFV+7nsrdge/IUMbwCh4aG3BLwLl1JUT/8zPOxfcZdU9VSmsgND0eQre/PC3Q+27qIZU45wenbD5TtSe4Ps7v5bAayMp6Ftv9fhdDYZF0HCzZbJsifQhYm69gb5nRwPEKUpobaKEyShv5kQ1/Pq8Y4iJbaIV+4BLrRqhWhIfbRWO+Wkivqti8lMCgLY+2U9GPMdmqk7cr2IRYFlxGjpWFV4g4cWYBuqt3ppMnYSiOzQdEIyyiRzNc8cWDtWHNH11hDXj4FE11NqsKUljc1gfpE8BLmSTTA9ED+SfZbV1mQnSRw1BN9amvNmRK424IbXtkP/cftdU03nrCD2bB1NSaiDMKuoZx8AxywzUuF5lAZtI8/C8vUTpyKUN7rvttr3Sn+WwA7Gx5+UC/qMZ0jUElR84ujvaiGOMjlzxy83m5+EGX3n23RfWn5eZil35jz6LUeJKMMGl5UTZ4pbTTP4AWkIGeaAJfJb13o1f79LbDN7Y=
   api_key:
-    secure: E5iBlZDws/vjwNEhQ/qZxKs+7/lbIsK8DOPs4l2nBZuDZL8EBfpSIUMelXPCNTxShsUY4UBrtcFmnHp2gcc4d300/3oG/KJQFOAf0dDkJHVJdYgjKVWxOLX499jlSxYCI+MPvgIU7zglw1seI2K6ahxp7i/ngJVg99mlvLH8LuqG7XMOvA6OttwKZJBpJDt+dC3eRHS6bSv6wahtnpU1RH0I1clcAulxzeRC4z5fs+wKmKAqfPRz4cDdIIFeaQxjGccwDnBCjg3MmdIIYFSXAqnNmSi6knEObe+rFIXm+eoY+Wqo/7JGvwh8Bv1kciK362PzDJgeLR0nFhGE2STVPlJ5Ap57XuSDnBDfLj+DyTtsSDVr/PTjyHj+XFhC5VPUdN0zgAwdw5JLpq63re2mk71gmsVKAlmXDFDm99PS9udaEdjv+tMMiDzTwcMxpMNEjyuOgwXJtS1K6YNRCa3iT2NLAiGTVHHCxXaU85ygzMFmWVCebzpNDZh6OlSRhoxFH5bfubnIjLBtbw0glGjwZ+mCKXlMaikdtMvA4e7NKTvRvmiQeIbxcmkDGFti8xZLDUOzTCYE/huG+o96N+jxElUTvBhCnSoi9rvdSu1pDUFfw9Cy8qANGroU/nCFUVbDRs2RhgC6osd9BMfvUvWNlOeozgx85skngXosbbUyBgU=
+    secure: gQ/GQmA0o/RVL27XrBOF/wxxrOWdSgDF1VdJ6nRb90BUafK3E9BtDF+6Ba8WU2iseJuFpvkUAUYynX0jOl6bKHu/xInbboreHIJNnupfLpSrt6pUes15QPcz3CPBcbGoW1i4N0piEyjTnxA5fZyfdDkTFtuZVCDSXeLqGJYR4OWdLZ/lNP8y57Pns+Fzai3tvLAxQ18Y0DAJ6LFfvL/KEjj0NrB08XrrlHM9L+crO7BJWxZUhZROFho1aUiey1MlPF6D/xBdfTdbfnIdC6cAfE+8O4oHn8/8IPr6Se2d1KZg9+tfyxybCaARnAbisbloz38RM7zYNFZmF1vudtnwUnJJAwmvL0qQDiveIsDj8QMyRyQ7/CS69bb1gem19Eg3dIWQlQTvtdQjjv5ikpYWLkX7ok6e87ljOq/Nbtc8v5HSwoNPJW975HqbyvRDFB6dE+b5IO+yGhFRnWt61Zt+Ns05OPVgfWFbtkjRR7928rWdfJQAmz5KaA6Dgt6/cmeYj5ikNdrLMz0RImQN7lRyt4en8ZHwp0Y7zB7rMGAXWueMBqgEqYfYKdYjT93nkvW9ifoPu/5zsJwYrPOCdvYDivuxv8kirE5cdyFBWtMqJ/zdhsiTUqerG2awnCtkZuLM1zesPxQZAXe30WuQ712rQoWBhKiQWj/RZQDKvcSwBe8=
   skip_cleanup: true
   on:
     repo: mcmath/deep-map
-    node: "4"
+    node: '11'
     tags: true
 after_deploy:
-  - npm run build:remove
+- npm run clean

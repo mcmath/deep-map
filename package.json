@@ -2,20 +2,19 @@
   "name": "deep-map",
   "version": "1.5.0",
   "description": "Transforms nested values of complex objects",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "scripts": {
-    "build:compile": "tsc -p tsconfig.build.json",
-    "build:remove": "rimraf lib",
-    "build": "npm run build:remove && npm run build:compile",
+    "clean": "rimraf lib",
+    "build": "npm run clean && tsc -p tsconfig.build.json",
     "test:lint": "tslint \"src/**/*.ts\"",
     "test:unit": "istanbul cover -e .ts -x \"*.test.ts\" _mocha -- --opts mocha.opts",
     "test:report": "npm test && open coverage/lcov-report/index.html",
     "test": "npm run test:lint && npm run test:unit",
-    "ci:coveralls": "cat coverage/lcov.info | coveralls"
+    "coveralls": "cat coverage/lcov.info | coveralls"
   },
   "engines": {
-    "node": ">=4"
+    "node": ">=6"
   },
   "repository": {
     "type": "git",
@@ -34,34 +33,33 @@
     "typescript",
     "typings"
   ],
-  "author": "Akim McMath <akim.elijah.mcmath@gmail.com>",
+  "author": "Akim McMath <akim@mcmath.io> (http://www.mcmath.io/)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mcmath/deep-map/issues"
   },
   "homepage": "https://github.com/mcmath/deep-map#readme",
   "devDependencies": {
-    "@types/chai": "^3.5.0",
+    "@types/chai": "^4.1.7",
     "@types/es6-weak-map": "^1.2.0",
-    "@types/lodash": "^4.14.62",
-    "@types/mocha": "^2.2.40",
-    "@types/sinon": "^2.1.2",
-    "@types/sinon-chai": "^2.7.27",
-    "chai": "^3.5.0",
-    "coveralls": "^2.13.0",
+    "@types/lodash": "^4.14.120",
+    "@types/mocha": "^5.2.5",
+    "@types/sinon": "^7.0.5",
+    "@types/sinon-chai": "^3.2.2",
+    "chai": "^4.2.0",
+    "coveralls": "^3.0.2",
     "es6-weak-map": "^2.0.2",
     "istanbul": "1.1.0-alpha.1",
-    "mocha": "^3.2.0",
+    "mocha": "^5.2.0",
     "rimraf": "^2.6.1",
-    "sinon": "^2.1.0",
-    "sinon-chai": "^2.9.0",
-    "ts-node": "~1.2.3",
+    "sinon": "^7.2.3",
+    "sinon-chai": "^3.3.0",
+    "ts-node": "^8.0.2",
     "tslint": "^5.1.0",
-    "typescript": "^2.2.2"
+    "typescript": "^3.2.4"
   },
   "dependencies": {
-    "es6-weak-map": "^2.0.2",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.11",
     "tslib": "^1.6.0"
   }
 }
